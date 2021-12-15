@@ -1,3 +1,3 @@
-export * from './interfaces';
-export * from './nestjs-notify.module';
-export * from './nestjs-notify.service';
+export * from './webhook.interface';
+export * from './webhook.channel';
+export * from './webhook.message';
