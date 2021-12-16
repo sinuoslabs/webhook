@@ -2,7 +2,6 @@
   "name": "@nestjs-notification-channels/webhook",
   "version": "0.0.0",
   "description": "",
-  "author": "",
   "license": "MIT",
   "keywords": [
     "nest",
@@ -38,7 +37,8 @@
     "rxjs": "^6.0.0 || ^7.0.0"
   },
   "dependencies": {
-    "@nestjs/axios": "0.0.3"
+    "@nestjs/axios": "0.0.3",
+    "@sinuos/nestjs-notification": "^1.0.1"
   },
   "devDependencies": {
     "@commitlint/cli": "15.0.0",
@@ -72,9 +72,18 @@
   "lint-staged": {
     "**/*": "pretty-quick --staged"
   },
+  "author": {
+    "name": "Houssene Dao",
+    "email": "dao.houssene@gmail.com",
+    "url": "https://twitter.com/houssenedao"
+  },
+  "homepage": "https://github.com/nestjs-notification-channels/webhook#readme",
+  "bugs": {
+    "url": "https://github.com/nestjs-notification-channels/webhook/issues"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/themartiangeeks/nestjs-notify"
+    "url": "https://github.com/nestjs-notification-channels/webhook"
   },
   "jest": {
     "moduleFileExtensions": [

@@ -1,7 +1,7 @@
 import {Inject, Injectable, InternalServerErrorException} from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
+import {INestjsNotifyChannel} from "@sinuos/nestjs-notification";
 import { AxiosResponse } from 'axios';
-import { INestjsNotifyChannel } from './interfaces';
 import { IWebhookChannel } from "./webhook.interface";
 
 @Injectable()
@@ -31,6 +31,10 @@ export class WebhookChannel implements INestjsNotifyChannel {
   private static getData(notification: IWebhookChannel) {
     if (typeof notification.toWebhook === 'function') {
       return notification.toWebhook();
+    }
+
+    if (typeof notification.toPayload === 'function') {
+      return notification.toPayload();
     }
 
     throw new InternalServerErrorException(

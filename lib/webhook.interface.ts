@@ -1,3 +1,5 @@
+import {NestJsNotify} from "@sinuos/nestjs-notification";
+
 /**
  * Webhook channel model
  * @interface IWebhookChannel
