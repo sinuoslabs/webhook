@@ -1,8 +1,8 @@
-import {Inject, Injectable, InternalServerErrorException} from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import {INestjsNotifyChannel} from "@sinuos/nestjs-notification";
+import { INestjsNotifyChannel } from '@sinuos/nestjs-notification';
 import { AxiosResponse } from 'axios';
-import { IWebhookChannel } from "./webhook.interface";
+import { IWebhookChannel } from './webhook.interface';
 
 @Injectable()
 export class WebhookChannel implements INestjsNotifyChannel {
@@ -10,7 +10,7 @@ export class WebhookChannel implements INestjsNotifyChannel {
    * @constructor
    * @param {HttpService} http
    */
-  constructor(@Inject(HttpService) private readonly http: HttpService) {}
+  constructor(private readonly http: HttpService) {}
 
   /**
    * Send notify
@@ -18,10 +18,19 @@ export class WebhookChannel implements INestjsNotifyChannel {
    * @param {IWebhookChannel} notification
    * @return Promise<AxiosResponse<any>>
    */
-  public async send(notification: IWebhookChannel): Promise<AxiosResponse<any>> {
+  public async send(
+    notification: IWebhookChannel,
+  ): Promise<AxiosResponse<any>> {
     const message = WebhookChannel.getData(notification);
 
-    return Promise.resolve(undefined);
+    const response = await this.http.request({
+      method: 'POST',
+      url: message.getUrl,
+      data: message.getBody,
+      headers: message.getHeader,
+    });
+
+    return response.toPromise();
   }
 
   /**
@@ -31,10 +40,6 @@ export class WebhookChannel implements INestjsNotifyChannel {
   private static getData(notification: IWebhookChannel) {
     if (typeof notification.toWebhook === 'function') {
       return notification.toWebhook();
-    }
-
-    if (typeof notification.toPayload === 'function') {
-      return notification.toPayload();
     }
 
     throw new InternalServerErrorException(

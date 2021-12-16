@@ -41,24 +41,45 @@ export class WebhookMessage {
   }
 
   /**
+   * Get url.
+   */
+  get getUrl() {
+    return this.url;
+  }
+
+  /**
    * Set the message header.
-   * @param {string} header
+   * @param {any} header
    * @return this
    */
-  setHeader(header: string): WebhookMessage {
+  setHeader(header: any): WebhookMessage {
     this.header = header;
 
     return this;
   }
 
   /**
+   * Get header
+   */
+  get getHeader() {
+    return this.header;
+  }
+
+  /**
    * Set the message body.
-   * @param {string} body
+   * @param {any} body
    * @return this
    */
-  setBody(body: string): WebhookMessage {
+  setBody(body: any): WebhookMessage {
     this.body = body;
 
     return this;
+  }
+
+  /**
+   * Get body
+   */
+  get getBody() {
+    return this.body;
   }
 }
