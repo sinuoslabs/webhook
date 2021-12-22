@@ -1,19 +1,22 @@
 import { Injectable } from '@nestjs/common';
-import { NestJsNotify, NestjsNotifyService } from '@sinuos/nestjs-notification';
+import {
+  NestJsNotification,
+  NestjsNotificationService,
+} from '@sinuos/nestjs-notification';
 
 @Injectable()
 export class WebhookChannelService {
   /**
    * @constructor
-   * @param notifications
+   * @param {NestjsNotificationService} notifications
    */
-  constructor(private readonly notifications: NestjsNotifyService) {}
+  constructor(private readonly notifications: NestjsNotificationService) {}
 
   /**
-   * Notify notification.
-   * @param notification
+   * Notify.
+   * @param {NestJsNotification} notification
    */
-  async notify(notification: NestJsNotify): Promise<any> {
+  async notify(notification: NestJsNotification): Promise<any> {
     return this.notifications.send(notification);
   }
 }

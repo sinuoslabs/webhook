@@ -1,11 +1,11 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { INestjsNotifyChannel } from '@sinuos/nestjs-notification';
+import { INestjsNotificationChannel } from '@sinuos/nestjs-notification';
 import { AxiosResponse } from 'axios';
 import { IWebhookChannel } from './webhook.interface';
 
 @Injectable()
-export class WebhookChannel implements INestjsNotifyChannel {
+export class WebhookChannel implements INestjsNotificationChannel {
   /**
    * @constructor
    * @param {HttpService} http
