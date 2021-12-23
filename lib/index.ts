@@ -1,3 +1,3 @@
 export * from './bootstrap';
-export * from './webhook-channel.service';
+export * from './interfaces';
 export * from './webhook-channel.module';
