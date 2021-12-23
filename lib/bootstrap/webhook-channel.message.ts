@@ -1,8 +1,10 @@
+import { WebhookChannelException } from '../exceptions';
+
 /**
  * Webhook message
- * @class WebhookMessage
+ * @class WebhookChannelMessage
  */
-export class WebhookMessage {
+export class WebhookChannelMessage {
   /**
    * @public
    * @property {string} channelId
@@ -25,19 +27,8 @@ export class WebhookMessage {
    * @constructor
    * @param {string} body
    */
-  construct(body: any) {
+  constructor(body: any) {
     this.body = body;
-  }
-
-  /**
-   * Set the message url.
-   * @param {string} url
-   * @return this
-   */
-  setUrl(url: string): WebhookMessage {
-    this.url = url;
-
-    return this;
   }
 
   /**
@@ -48,12 +39,16 @@ export class WebhookMessage {
   }
 
   /**
-   * Set the message header.
-   * @param {any} header
+   * Set the message url.
+   * @param {string} url
    * @return this
    */
-  setHeader(header: any): WebhookMessage {
-    this.header = header;
+  setUrl(url: string): WebhookChannelMessage {
+    if (!url) {
+      throw new WebhookChannelException('URL is not empty');
+    }
+
+    this.url = url;
 
     return this;
   }
@@ -66,12 +61,12 @@ export class WebhookMessage {
   }
 
   /**
-   * Set the message body.
-   * @param {any} body
+   * Set the message header.
+   * @param {any} header
    * @return this
    */
-  setBody(body: any): WebhookMessage {
-    this.body = body;
+  setHeader(header: any): WebhookChannelMessage {
+    this.header = header;
 
     return this;
   }
@@ -81,5 +76,16 @@ export class WebhookMessage {
    */
   get getBody() {
     return this.body;
+  }
+
+  /**
+   * Set the message body.
+   * @param {any} body
+   * @return this
+   */
+  setBody(body: any): WebhookChannelMessage {
+    this.body = body;
+
+    return this;
   }
 }
