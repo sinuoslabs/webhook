@@ -1,6 +1,6 @@
 {
   "name": "@nestjs-notification-channels/webhook",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "description": "NestJS's webhook notification channel",
   "license": "MIT",
   "keywords": [
